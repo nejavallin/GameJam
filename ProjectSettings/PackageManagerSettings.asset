@@ -35,11 +35,6 @@ MonoBehaviour:
   m_RegistryInfoDraft:
     m_Modified: 0
     m_ErrorMessage: 
-<<<<<<< Updated upstream
-    m_UserModificationsInstanceId: -936
-    m_OriginalInstanceId: -938
-=======
-    m_UserModificationsInstanceId: -956
-    m_OriginalInstanceId: -958
->>>>>>> Stashed changes
+    m_UserModificationsInstanceId: -898
+    m_OriginalInstanceId: -900
   m_LoadAssets: 0
