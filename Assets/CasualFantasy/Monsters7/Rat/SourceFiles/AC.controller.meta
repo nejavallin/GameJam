@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: afbc312cb2e6cd445b33983307753d59
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 198865
+  packageName: Rat - Casual Fantasy
+  packageVersion: 1.0
+  assetPath: Assets/CasualFantasy/Monsters7/Rat/SourceFiles/AC.controller
+  uploadId: 442223

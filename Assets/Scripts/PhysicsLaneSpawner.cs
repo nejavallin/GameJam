@@ -25,7 +25,7 @@ public class PhysicsLaneSpawner : MonoBehaviour
     [Range(0f, 1f)] public float sameLaneRepeatChance = 0.1f;
 
     [Header("Double Spawn")]
-    [Range(0f, 1f)] public float doubleSpawnChance = 0.08f;
+    [Range(0f, 1f)] public float doubleSpawnChance = 0.15f;
 
     [Header("Launch Force")]
     public float minLaunchForce = 12f;
@@ -52,7 +52,8 @@ public class PhysicsLaneSpawner : MonoBehaviour
     public Vector3 downhillDirection = new Vector3(0f, 0f, -1f);
 
     private int lastLaneIndex = -1;
-    private bool spawning = true;
+    private bool spawning = false;
+    private Coroutine spawnRoutine;
 
     void Start()
     {
@@ -60,8 +61,27 @@ public class PhysicsLaneSpawner : MonoBehaviour
         {
             Debug.LogWarning("PhysicsLaneSpawner works best with exactly 4 lanes.");
         }
+    }
 
-        StartCoroutine(SpawnRoutine());
+    public void StartSpawning()
+    {
+        if (spawning) return;
+
+        spawning = true;
+        spawnRoutine = StartCoroutine(SpawnRoutine());
+    }
+
+    public void StopSpawning()
+    {
+        if (!spawning) return;
+
+        spawning = false;
+
+        if (spawnRoutine != null)
+        {
+            StopCoroutine(spawnRoutine);
+            spawnRoutine = null;
+        }
     }
 
     IEnumerator SpawnRoutine()
