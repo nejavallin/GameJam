@@ -1,10 +1,13 @@
 using System;
 using System.Collections;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class PlayerUpgrades : MonoBehaviour
 {
     private playerController pc;
+    [SerializeField] private CharacterController characterController;
+
 
     public event Action OnExplosion;
     private float debugRadius = 0f;
@@ -37,7 +40,7 @@ public class PlayerUpgrades : MonoBehaviour
             Rigidbody rb = hit.GetComponent<Rigidbody>();
             if (rb == null) continue;
 
-            float distance = Vector3.Distance(pc.gameObject.transform.position, hit.transform.position);
+            float distance = Vector3.Distance(characterController.gameObject.transform.position, hit.transform.position);
             float t = distance / radius; // 0 = center, 1 = edge
 
             // scales from maxForce at center to minForce at edge
@@ -60,8 +63,8 @@ public class PlayerUpgrades : MonoBehaviour
     void OnDrawGizmos()
     {
         if (!showGizmo) return;
-        Gizmos.color = new Color(1f, 0.3f, 0f, 0.3f); // orange, semi transparent
-        Gizmos.DrawWireSphere(pc.gameObject.transform.position, debugRadius);
-        Gizmos.DrawSphere(pc.gameObject.transform.position, debugRadius); // filled for visibility
+        Gizmos.color = new Color(1f, 0.3f, 0f, 0.2f); // orange, semi transparent
+        Gizmos.DrawWireSphere(characterController.gameObject.transform.position, debugRadius);
+        Gizmos.DrawSphere(characterController.gameObject.transform.position, debugRadius); // filled for visibility
     }
 }

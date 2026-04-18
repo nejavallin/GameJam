@@ -5,8 +5,8 @@ public class PlayerDeath : MonoBehaviour
     [SerializeField] private CharacterController controller;
     [SerializeField] private Renderer capsuleRenderer;
     [SerializeField] private Material deadMaterial;
-
-    [SerializeField] private float tumbleSpeed = 180f;
+    
+    private float tumbleSpeed;
     [SerializeField] private float fallSpeed = 5f;
 
     private bool isDead = false;
@@ -14,6 +14,7 @@ public class PlayerDeath : MonoBehaviour
 
     public void Die()
     {
+        tumbleSpeed = GetComponentInParent<playerController>().tumbleSpeed;
         if (isDead) return;
         isDead = true;
 
@@ -24,7 +25,7 @@ public class PlayerDeath : MonoBehaviour
         tumbleAxis = new Vector3(Random.Range(-1f, 1f), 0f, Random.Range(-1f, 1f)).normalized;
 
         // disable player control
-        GetComponent<playerController>().enabled = false;
+        GetComponent<playerController>().OnDisable();
     }
 
     void Update()
