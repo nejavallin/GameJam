@@ -10,6 +10,10 @@ public class PhysicsHazard : MonoBehaviour
     public bool useCustomGravity = false;
     public float gravityMultiplier = 2f;
 
+    [Header("Destruction")]
+    [Tooltip("Destroy this object when colliding with objects with this tag.")]
+    public string destroyOnTag = "Wall";
+
     private Rigidbody rb;
     private bool launched = false;
     private Vector3 debugLaunchDirection = Vector3.zero;
@@ -71,6 +75,14 @@ public class PhysicsHazard : MonoBehaviour
         rb.AddTorque(randomTorqueAxis * torqueAmount, ForceMode.Impulse);
 
         Destroy(gameObject, lifeTime);
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag(destroyOnTag))
+        {
+            Destroy(gameObject);
+        }
     }
 
     void OnDrawGizmosSelected()
